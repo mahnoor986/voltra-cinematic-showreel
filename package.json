@@ -1,0 +1,13 @@
+{
+  "name": "voltra-cinematic-concept",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cinematic concept website for an electric bike brand.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

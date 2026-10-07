@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Cinematic concept: bikes</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&amp;family=Geist:wght@400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap">
+<style>
+body{margin:0;background:#07080a}
+a{color:inherit;text-decoration:none}a:hover{color:inherit}
+@property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+@property --gap{syntax:'<length>';inherits:true;initial-value:26px}
+@property --n{syntax:'<integer>';inherits:false;initial-value:0}
+@property --fill{syntax:'<percentage>';inherits:false;initial-value:0%}
+
+.site{--ink:#07080a;--ink2:#0e1110;--ink3:#151916;--text:#eef2e8;--muted:#a3a99b;--dim:#7f867a;--line:rgba(238,242,232,0.09);
+  --a20:color-mix(in srgb,var(--a) 20%,transparent);--a10:color-mix(in srgb,var(--a) 10%,transparent);--a40:color-mix(in srgb,var(--a) 40%,transparent);
+  font-family:'Geist',system-ui,sans-serif;color:var(--text);background:var(--ink);position:relative;overflow:hidden}
+.site *{box-sizing:border-box}
+.d{font-family:'Archivo','Arial Narrow',sans-serif;font-stretch:125%;font-weight:800;text-transform:uppercase;letter-spacing:-0.03em;line-height:0.9;margin:0}
+.mono{font-family:'Geist Mono',monospace}
+.acc{color:var(--a)}
+.outline{color:transparent;-webkit-text-stroke:1.5px var(--a)}
+.wrap{max-width:1280px;margin:0 auto;padding:0 32px}
+.chip{display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border-radius:999px;border:1px solid var(--a20);background:var(--a10);font:500 12px 'Geist Mono',monospace;letter-spacing:0.08em;text-transform:uppercase;color:var(--a)}
+.chip .dot{width:7px;height:7px;border-radius:50%;background:var(--a);box-shadow:0 0 12px var(--a);animation:pulse 1.6s ease-in-out infinite}
+.lede{font-size:18px;line-height:1.7;color:var(--muted);margin:0}
+.ph{position:relative;overflow:hidden;border-radius:14px;background:radial-gradient(120% 90% at 70% 15%,#1d2a1b 0%,#0d110d 60%,#080a08 100%);display:flex;align-items:center;justify-content:center}
+.ph::after{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:40px 40px;mask-image:radial-gradient(circle at 50% 50%,#000,transparent 75%);pointer-events:none}
+.ph svg{width:58%;position:relative;z-index:1;transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.ph .tag{position:absolute;left:14px;bottom:12px;z-index:2;font:500 11px 'Geist Mono',monospace;letter-spacing:0.08em;color:var(--muted);text-transform:uppercase}
+
+/* buttons */
+.btn{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 28px;border-radius:999px;background:var(--a);color:#0b0e07;font-weight:600;font-size:15px;border:1.5px solid var(--a);transition:color .4s,transform .25s cubic-bezier(.16,1,.3,1)}
+.btn::before{content:"";position:absolute;inset:0;z-index:-1;background:#0b0e07;border-radius:inherit;transform:translateY(101%);transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.btn:hover{color:var(--a);transform:translateY(-2px)}
+.btn:hover::before{transform:none}
+.btn .arr{transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.btn:hover .arr{transform:translateX(5px) rotate(-45deg)}
+.btn.ghost{background:transparent;color:var(--a)}
+.btn.ghost::before{background:var(--a)}
+.btn.ghost:hover{color:#0b0e07}
+.glowbtn{position:relative;isolation:isolate;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 20px;border-radius:999px;background:#0b0d0b;color:var(--text);font:600 13px 'Geist',sans-serif;letter-spacing:0.04em}
+.glowbtn::before{content:"";position:absolute;inset:-1.5px;z-index:-2;border-radius:inherit;background:conic-gradient(from var(--ang),transparent 0 65%,var(--a) 85%,transparent 100%);animation:ang 3.2s linear infinite}
+.glowbtn::after{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;background:#0b0d0b}
+.glowbtn:hover{color:var(--a)}
+.ulink{position:relative;font-weight:600;color:var(--text);display:inline-flex;align-items:center;gap:8px;min-height:44px}
+.ulink::after{content:"";position:absolute;left:0;right:0;bottom:8px;height:1.5px;background:var(--a);transform:scaleX(0);transform-origin:right;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.ulink:hover::after{transform:scaleX(1);transform-origin:left}
+
+/* header */
+.hdr{position:absolute;left:0;right:0;top:20px;z-index:50;display:flex;justify-content:center;padding:0 24px}
+.hdr nav{width:100%;max-width:1240px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 8px 8px 22px;border-radius:999px;background:rgba(14,17,16,0.62);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);border:1px solid var(--line);flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:8px;font-family:'Archivo',sans-serif;font-stretch:125%;font-weight:900;font-size:20px;text-transform:uppercase;letter-spacing:-0.03em;color:var(--text)}
+.brand svg{color:var(--a);animation:flicker 4s steps(1) infinite}
+.nl{position:relative;display:inline-flex;align-items:center;height:40px;padding:0 14px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#c4c9bd;overflow:hidden}
+.nl span{display:block;transition:transform .45s cubic-bezier(.16,1,.3,1)}
+.nl span:last-child{position:absolute;left:14px;top:100%;color:var(--a)}
+.nl:hover span{transform:translateY(-100%)}
+.nl:hover span:last-child{transform:translateY(-100%)}
+.nl.on{color:var(--a)}
+.nl.on::after{content:"";position:absolute;left:50%;bottom:5px;width:4px;height:4px;border-radius:50%;background:var(--a);transform:translateX(-50%)}
+
+/* hero */
+.hero{position:relative;min-height:940px;display:flex;align-items:center;overflow:hidden;background:radial-gradient(80% 60% at 70% 55%,#14200f 0%,#07080a 70%)}
+.floor{position:absolute;left:-60%;right:-60%;bottom:-18%;height:62%;transform:perspective(520px) rotateX(72deg);transform-origin:50% 100%;background-image:linear-gradient(var(--a40) 1px,transparent 1px),linear-gradient(90deg,var(--a40) 1px,transparent 1px);background-size:64px 64px;mask-image:linear-gradient(to top,#000 25%,transparent 95%);-webkit-mask-image:linear-gradient(to top,#000 25%,transparent 95%);animation:floor 2.4s linear infinite;opacity:.55}
+.horizon{position:absolute;left:0;right:0;bottom:30%;height:2px;background:linear-gradient(90deg,transparent,var(--a),transparent);box-shadow:0 0 40px 6px var(--a40);opacity:.7}
+.letterbox{position:absolute;left:0;right:0;height:56px;background:#000;z-index:5}
+.letterbox.t{top:0}.letterbox.b{bottom:0}
+.hud{position:absolute;z-index:6;font:500 11px 'Geist Mono',monospace;letter-spacing:0.12em;color:var(--dim);text-transform:uppercase}
+.rec::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5a4f;margin-right:8px;animation:pulse 1.2s ease-in-out infinite}
+
+/* split letters */
+.split .ch{display:inline-block;animation:rise 1.1s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(var(--i) * 45ms + 200ms)}
+.split .w{white-space:nowrap}
+.split .w{display:inline-block;overflow:hidden;padding-bottom:0.06em;margin-bottom:-0.06em;vertical-align:top}
+.sweep{background:linear-gradient(var(--a),var(--a)) left/var(--fill) 100% no-repeat;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:1.5px var(--a);animation:sweep 2.6s cubic-bezier(.65,0,.35,1) 1.1s forwards}
+
+/* glitch */
+.glitch{position:relative;display:inline-block}
+.glitch::before,.glitch::after{content:attr(data-t);position:absolute;left:0;top:0;width:100%;overflow:hidden}
+.glitch::before{color:#67e8f9;animation:glitchA 3.2s steps(2) infinite;clip-path:inset(0 0 60% 0)}
+.glitch::after{color:#f472b6;animation:glitchB 3.2s steps(2) infinite;clip-path:inset(55% 0 0 0)}
+
+/* 3D energy core (AI core) */
+.core{position:relative;width:440px;height:440px;transform-style:preserve-3d;perspective:1200px}
+.ring{position:absolute;inset:0;border-radius:50%;border:1.5px solid var(--a40);transform-style:preserve-3d}
+.ring::before{content:"";position:absolute;top:-5px;left:50%;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:var(--a);box-shadow:0 0 18px 4px var(--a)}
+.ring.r1{animation:r1 9s linear infinite}
+.ring.r2{inset:30px;animation:r2 13s linear infinite;border-color:var(--a20)}
+.ring.r3{inset:62px;animation:r3 7s linear infinite;border-style:dashed}
+.orb{position:absolute;inset:118px;background:radial-gradient(circle at 38% 32%,#f4ffd9 0%,var(--a) 22%,color-mix(in srgb,var(--a) 40%,#0a3d2a) 55%,transparent 72%);filter:blur(2px);animation:morph 7s ease-in-out infinite,breathe 3.4s ease-in-out infinite;box-shadow:0 0 120px 30px var(--a20)}
+.orb-core{position:absolute;inset:180px;border-radius:50%;background:radial-gradient(circle,#fff 0%,transparent 70%);mix-blend-mode:screen;animation:breathe 2.2s ease-in-out infinite}
+.float{position:absolute;z-index:4;padding:14px 16px;border-radius:16px;background:rgba(14,17,16,0.62);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);animation:bob 6s ease-in-out infinite;transition:transform .5s cubic-bezier(.16,1,.3,1),border-color .3s}
+.float:hover{border-color:var(--a40)}
+.float .k{font:500 10px 'Geist Mono',monospace;letter-spacing:0.14em;color:var(--dim);text-transform:uppercase}
+.float .v{font:600 22px 'Geist Mono',monospace;color:var(--text);margin-top:4px}
+.bar{height:4px;border-radius:4px;background:var(--a10);overflow:hidden;margin-top:8px}
+.bar i{display:block;height:100%;width:var(--w);background:var(--a);box-shadow:0 0 12px var(--a);animation:grow 2.4s cubic-bezier(.16,1,.3,1) 1.4s both}
+
+/* marquee */
+.mq{display:flex;overflow:hidden;white-space:nowrap;border-block:1px solid var(--line)}
+.mq-in{display:flex;flex-shrink:0;gap:48px;padding:22px 24px;animation:mq 28s linear infinite}
+.mq.rev .mq-in{animation-direction:reverse;animation-duration:34s}
+.mq:hover .mq-in{animation-play-state:paused}
+.mq .d{font-size:56px}
+.mq .star{color:var(--a);font-size:30px;align-self:center}
+
+/* scroll-driven reveals (static canvas shows final state) */
+@supports (animation-timeline: view()){
+  .sr{animation:sr linear both;animation-timeline:view();animation-range:entry 5% entry 70%}
+  .tilt-in{animation:tiltin linear both;animation-timeline:view();animation-range:entry 0% cover 40%}
+  .xl{animation:xl linear both;animation-timeline:view();animation-range:entry 0% exit 100%}
+  .xr{animation:xr linear both;animation-timeline:view();animation-range:entry 0% exit 100%}
+}
+
+/* product frame */
+.stage3d{perspective:1600px}
+.frame3d{transform-style:preserve-3d;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+.frame3d:hover{transform:rotateY(-8deg) rotateX(4deg) translateZ(20px)}
+.frame3d:hover .ph svg{transform:scale(1.08) translateX(-10px)}
+.hotspot{position:absolute;z-index:3;width:18px;height:18px;border-radius:50%;background:var(--a);box-shadow:0 0 0 0 var(--a40);animation:ping 2s ease-out infinite}
+.hotspot span{position:absolute;left:28px;top:50%;transform:translateY(-50%);white-space:nowrap;padding:6px 10px;border-radius:8px;background:rgba(7,8,10,0.8);border:1px solid var(--line);font:500 11px 'Geist Mono',monospace;color:var(--text);opacity:0;transition:opacity .3s,transform .3s}
+.hotspot:hover span{opacity:1;transform:translateY(-50%) translateX(4px)}
+.sw{width:34px;height:34px;border-radius:50%;border:2px solid var(--ink);cursor:pointer;transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.sw:hover{transform:scale(1.15)}
+
+/* counters */
+.count{counter-reset:n var(--n)}
+.count::after{content:counter(n)}
+.c180{animation:c180 2.6s cubic-bezier(.16,1,.3,1) .8s both}
+.c105{animation:c105 2.6s cubic-bezier(.16,1,.3,1) .9s both}
+.c3000{animation:c3000 2.6s cubic-bezier(.16,1,.3,1) 1s both}
+.c120{animation:c120 2.6s cubic-bezier(.16,1,.3,1) 1.1s both}
+
+/* AI assistant */
+.ai{position:relative;border-radius:24px;padding:28px;background:linear-gradient(160deg,rgba(21,25,22,0.9),rgba(10,12,11,0.95));border:1px solid var(--line);overflow:hidden}
+.ai::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:conic-gradient(from var(--ang),transparent 0 70%,var(--a) 85%,transparent);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:ang 5s linear infinite;pointer-events:none}
+.prompt{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:14px;background:#0a0c0b;border:1px solid var(--line);font:500 15px 'Geist Mono',monospace;color:var(--text)}
+.type{display:inline-block;overflow:hidden;white-space:nowrap;border-right:2px solid var(--a);width:0;animation:type 2.2s steps(40) .3s forwards,caret .8s step-end infinite;max-width:max-content}
+.stream > *{opacity:0;animation:fadeup .7s cubic-bezier(.16,1,.3,1) forwards;animation-delay:calc(2.6s + var(--i) * 280ms)}
+.route path.draw{stroke-dasharray:900;stroke-dashoffset:900;animation:draw 2.4s cubic-bezier(.65,0,.35,1) 3.2s forwards}
+.pchip{min-height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);font:500 13px 'Geist',sans-serif;cursor:pointer;transition:all .3s}
+.pchip:hover{border-color:var(--a40);color:var(--text)}
+.pchip.on{background:var(--a);color:#0b0e07;border-color:var(--a)}
+.neural line{stroke:var(--a);stroke-opacity:.25;stroke-dasharray:4 10;animation:flow 2.4s linear infinite}
+.neural circle{fill:var(--a);animation:pulse 2.4s ease-in-out infinite}
+.thinking span{display:inline-block;width:6px;height:6px;margin-right:4px;border-radius:50%;background:var(--a);animation:think 1.2s ease-in-out infinite}
+.thinking span:nth-child(2){animation-delay:.15s}.thinking span:nth-child(3){animation-delay:.3s}
+
+/* tilt cards */
+.tgrid{perspective:1400px}
+.tcard{position:relative;border-radius:20px;padding:32px;background:var(--ink2);border:1px solid var(--line);transform-style:preserve-3d;transition:transform .7s cubic-bezier(.16,1,.3,1),border-color .4s,background .4s;overflow:hidden}
+.tcard::before{content:"";position:absolute;inset:0;background:radial-gradient(420px circle at 50% 0%,var(--a20),transparent 60%);opacity:0;transition:opacity .5s}
+.tcard:hover{transform:rotateX(8deg) rotateY(-8deg) translateZ(30px);border-color:var(--a40)}
+.tcard:hover::before{opacity:1}
+.tcard .ic{position:relative;display:grid;place-items:center;width:58px;height:58px;border-radius:16px;background:var(--a10);color:var(--a);transform:translateZ(40px);transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.tcard:hover .ic{transform:translateZ(60px) rotate(-8deg) scale(1.1)}
+.tcard h3{position:relative;transform:translateZ(30px)}
+.spin{animation:spin 8s linear infinite}
+
+/* exploded view */
+.xwrap{position:relative;height:560px;perspective:1800px;display:flex;align-items:center;justify-content:center;cursor:crosshair}
+.xstack{position:relative;width:340px;height:220px;transform-style:preserve-3d;transform:rotateX(58deg) rotateZ(-36deg);animation:gap 5s ease-in-out infinite alternate}
+.xwrap:hover .xstack{--gap:96px;animation-play-state:paused}
+.plate{position:absolute;inset:0;border-radius:18px;border:1.5px solid var(--a40);background:color-mix(in srgb,var(--a) 7%,rgba(7,8,10,0.7));transform:translateZ(calc(var(--i) * var(--gap)));transition:transform .9s cubic-bezier(.16,1,.3,1);display:flex;align-items:center;justify-content:center;box-shadow:0 30px 60px -20px rgba(0,0,0,0.8)}
+.plate .pl{font:600 12px 'Geist Mono',monospace;letter-spacing:0.14em;text-transform:uppercase;color:var(--a);transform:rotateZ(36deg)}
+.plate.top{border-color:var(--a);background:color-mix(in srgb,var(--a) 16%,rgba(7,8,10,0.7))}
+
+/* flip cards */
+.flip{perspective:1200px;height:300px}
+.flip-in{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.flip:hover .flip-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:20px;padding:28px;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between}
+.face.front{background:var(--ink2)}
+.face.back{background:var(--a);color:#0b0e07;transform:rotateY(180deg)}
+
+/* 3D carousel */
+.car-stage{position:relative;height:560px;perspective:1800px;display:flex;align-items:center;justify-content:center}
+.car{position:relative;width:300px;height:400px;transform-style:preserve-3d;animation:car 36s linear infinite}
+.car-stage:hover .car{animation-play-state:paused}
+.car .cc{position:absolute;inset:0;transform:rotateY(calc(var(--i) * 60deg)) translateZ(430px);border-radius:18px;overflow:hidden;background:var(--ink2);border:1px solid var(--line);transition:border-color .3s}
+.car .cc:hover{border-color:var(--a)}
+
+/* charge word */
+.charge{font-family:'Archivo',sans-serif;font-stretch:125%;font-weight:900;text-transform:uppercase;letter-spacing:-0.04em;line-height:0.82;white-space:nowrap;color:transparent;-webkit-text-stroke:1.5px var(--a40);background:linear-gradient(var(--a),var(--a)) left/var(--fill) 100% no-repeat;-webkit-background-clip:text;background-clip:text;animation:charge 4.5s cubic-bezier(.65,0,.35,1) infinite alternate}
+
+/* path pulse */
+.pulse-line{position:relative;height:2px;background:var(--line);overflow:hidden}
+.pulse-line::after{content:"";position:absolute;top:0;left:-30%;width:30%;height:100%;background:linear-gradient(90deg,transparent,var(--a),transparent);animation:travel 2.2s linear infinite}
+
+/* forms */
+.fl{position:relative;padding-top:18px}
+.fl input,.fl textarea{width:100%;background:transparent;border:0;border-bottom:1.5px solid #3a4038;color:var(--text);font:inherit;font-size:16px;padding:10px 0;outline:none}
+.fl label{position:absolute;left:0;top:28px;font-size:15px;color:var(--dim);transition:all .35s cubic-bezier(.16,1,.3,1);pointer-events:none}
+.fl input:focus + label,.fl input:not(:placeholder-shown) + label,.fl textarea:focus + label,.fl textarea:not(:placeholder-shown) + label{top:0;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--a)}
+.fl .line{position:absolute;left:0;right:0;bottom:0;height:1.5px;background:var(--a);transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.fl input:focus ~ .line,.fl textarea:focus ~ .line{transform:scaleX(1)}
+
+.footer-mark{font-family:'Archivo',sans-serif;font-stretch:125%;font-weight:900;text-transform:uppercase;letter-spacing:-0.05em;line-height:0.78;font-size:clamp(80px,18vw,270px);text-align:center;white-space:nowrap;color:transparent;-webkit-text-stroke:1px var(--a40);margin:0 0 -0.12em;transition:color .6s}
+.footer-mark:hover{color:var(--a10)}
+
+.still *{animation:none !important}
+.still .type{width:auto;border-right:0}
+.still .stream > *,.still .split .ch{opacity:1}
+.still .route path.draw{stroke-dashoffset:0}
+@media (prefers-reduced-motion: reduce){.site *{animation:none !important}.site .type{width:auto}.site .stream > *{opacity:1}.site .route path.draw{stroke-dashoffset:0}}
+
+@keyframes rise{from{transform:translateY(110%) rotate(6deg)}}
+@keyframes sweep{to{--fill:100%}}
+@keyframes ang{to{--ang:360deg}}
+@keyframes pulse{50%{opacity:.35;transform:scale(.8)}}
+@keyframes floor{to{background-position:0 64px}}
+@keyframes r1{from{transform:rotateX(72deg) rotateZ(0)}to{transform:rotateX(72deg) rotateZ(360deg)}}
+@keyframes r2{from{transform:rotateY(68deg) rotateZ(0)}to{transform:rotateY(68deg) rotateZ(-360deg)}}
+@keyframes r3{from{transform:rotateX(30deg) rotateY(-50deg) rotateZ(0)}to{transform:rotateX(30deg) rotateY(-50deg) rotateZ(360deg)}}
+@keyframes morph{0%,100%{border-radius:42% 58% 63% 37%/41% 44% 56% 59%}33%{border-radius:61% 39% 45% 55%/58% 36% 64% 42%}66%{border-radius:37% 63% 52% 48%/47% 61% 39% 53%}}
+@keyframes breathe{50%{transform:scale(1.08)}}
+@keyframes bob{50%{transform:translateY(-14px)}}
+@keyframes grow{from{width:0}}
+@keyframes mq{to{transform:translateX(-100%)}}
+@keyframes sr{from{opacity:0;transform:translateY(70px) scale(.96);filter:blur(10px)}to{opacity:1;transform:none;filter:none}}
+@keyframes tiltin{from{transform:rotateX(38deg) scale(.88);opacity:.3}to{transform:none;opacity:1}}
+@keyframes xl{from{transform:translateX(12%)}to{transform:translateX(-12%)}}
+@keyframes xr{from{transform:translateX(-12%)}to{transform:translateX(12%)}}
+@keyframes ping{0%{box-shadow:0 0 0 0 var(--a40)}100%{box-shadow:0 0 0 18px transparent}}
+@keyframes c180{from{--n:0}to{--n:180}}
+@keyframes c105{from{--n:0}to{--n:105}}
+@keyframes c3000{from{--n:0}to{--n:3000}}
+@keyframes c120{from{--n:0}to{--n:120}}
+@keyframes type{to{width:100%}}
+@keyframes caret{50%{border-color:transparent}}
+@keyframes fadeup{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes flow{to{stroke-dashoffset:-28}}
+@keyframes think{50%{transform:translateY(-5px);opacity:.4}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes gap{from{--gap:22px}to{--gap:70px}}
+@keyframes car{to{transform:rotateY(-360deg)}}
+@keyframes cell{0%{background:var(--a10);box-shadow:none}10%,85%{background:var(--a);box-shadow:0 0 14px -2px var(--a)}}
+@keyframes menuin{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes charge{from{--fill:0%}to{--fill:100%}}
+@keyframes travel{to{left:100%}}
+@keyframes flicker{0%,100%{opacity:1}92%{opacity:1}93%{opacity:.3}94%{opacity:1}96%{opacity:.4}97%{opacity:1}}
+@keyframes glitchA{0%,86%,100%{transform:none}88%{transform:translate(-3px,-1px)}90%{transform:translate(3px,1px)}92%{transform:translate(-2px,0)}}
+@keyframes glitchB{0%,86%,100%{transform:none}88%{transform:translate(3px,1px)}90%{transform:translate(-3px,-1px)}92%{transform:translate(2px,0)}}
+</style>
+</helmet>
+
+<div class="site{{still}}" style="--a:{{accent}};min-height:100vh;">
+  <header class="hdr"><nav aria-label="Main">
+    <a class="brand" href="Cine-Home.dc.html" aria-label="Home"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"></path></svg>{{brand}}</a>
+    <div style="display:flex;gap:2px;flex-wrap:wrap"><a class="nl" href="Cine-Home.dc.html"><span>Home</span><span aria-hidden="true">Home</span></a><a class="nl on" href="Cine-Bikes.dc.html" aria-current="page"><span>Bikes</span><span aria-hidden="true">Bikes</span></a><a class="nl" href="Cine-Technology.dc.html"><span>Technology</span><span aria-hidden="true">Technology</span></a><a class="nl" href="Cine-About.dc.html"><span>About</span><span aria-hidden="true">About</span></a><a class="nl" href="Cine-Contact.dc.html"><span>Contact</span><span aria-hidden="true">Contact</span></a><a class="nl" href="Cine-References.dc.html"><span>Showcase</span><span aria-hidden="true">Showcase</span></a></div>
+    <a class="glowbtn" href="Cine-Contact.dc.html">Book a ride <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+  </nav></header>
+  <section aria-labelledby="bt" style="position:relative;padding:190px 0 40px;overflow:hidden">
+    <div class="floor" aria-hidden="true" style="height:70%;opacity:.35"></div>
+    <div class="wrap" style="position:relative">
+      <span class="chip"><span class="dot"></span>06 models · drag, hover, explore</span>
+      <h1 class="d split" style="margin-top:28px;font-size:clamp(60px,10vw,170px)"><span class="w "><span class="ch" style="--i:1">T</span><span class="ch" style="--i:2">H</span><span class="ch" style="--i:3">E</span></span> <span class="w "><span class="ch" style="--i:4">L</span><span class="ch" style="--i:5">I</span><span class="ch" style="--i:6">N</span><span class="ch" style="--i:7">E</span><span class="ch" style="--i:8">U</span><span class="ch" style="--i:9">P</span></span></h1>
+    </div>
+    <div class="car-stage" aria-label="Lineup carousel, hover to pause">
+      <div class="car"><a class="cc" href="Cine-Contact.dc.html" style="--i:0"><div style="height:62%"><div class="ph" style="aspect-ratio:auto;height:100%;border-radius:0"><svg viewBox="0 0 320 200" fill="none" stroke="var(--a)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="80" cy="140" r="44"></circle><circle cx="240" cy="140" r="44"></circle><circle cx="80" cy="140" r="8"></circle><circle cx="240" cy="140" r="8"></circle><path d="M80 140 L140 72 L210 72 L240 140 M140 72 L160 140 L210 72 M210 72 L226 36 L254 36 M128 56 L160 56"></path><rect x="150" y="82" width="44" height="26" rx="5" fill="var(--a)" fill-opacity="0.18"></rect></svg><span class="tag">Bike 1 · 3:4</span></div></div><div style="padding:18px"><p class="mono" style="margin:0;font-size:11px;letter-spacing:0.12em;color:var(--dim)">01 / CITY</p><p class="d" style="margin-top:8px;font-size:22px;color:var(--text)">Model One</p><p class="mono" style="margin:10px 0 0;color:var(--a)">[Rs 000,000]</p></div></a><a class="cc" href="Cine-Contact.dc.html" style="--i:1"><div style="height:62%"><div class="ph" style="aspect-ratio:auto;height:100%;border-radius:0"><svg viewBox="0 0 320 200" fill="none" stroke="var(--a)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="80" cy="140" r="44"></circle><circle cx="240" cy="140" r="44"></circle><circle cx="80" cy="140" r="8"></circle><circle cx="240" cy="140" r="8"></circle><path d="M80 140 L140 72 L210 72 L240 140 M140 72 L160 140 L210 72 M210 72 L226 36 L254 36 M128 56 L160 56"></path><rect x="150" y="82" width="44" height="26" rx="5" fill="var(--a)" fill-opacity="0.18"></rect></svg><span class="tag">Bike 2 · 3:4</span></div></div><div style="padding:18px"><p class="mono" style="margin:0;font-size:11px;letter-spacing:0.12em;color:var(--dim)">02 / SPORT</p><p class="d" style="margin-top:8px;font-size:22px;color:var(--text)">Model Two</p><p class="mono" style="margin:10px 0 0;color:var(--a)">[Rs 000,000]</p></div></a><a class="cc" href="Cine-Contact.dc.html" style="--i:2"><div style="height:62%"><div class="ph" style="aspect-ratio:auto;height:100%;border-radius:0"><svg viewBox="0 0 320 200" fill="none" stroke="var(--a)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="80" cy="140" r="44"></circle><circle cx="240" cy="140" r="44"></circle><circle cx="80" cy="140" r="8"></circle><circle cx="240" cy="140" r="8"></circle><path d="M80 140 L140 72 L210 72 L240 140 M140 72 L160 140 L210 72 M210 72 L226 36 L254 36 M128 56 L160 56"></path><rect x="150" y="82" width="44" height="26" rx="5" fill="var(--a)" fill-opacity="0.18"></rect></svg><span class="tag">Bike 3 · 3:4</span></div></div><div style="padding:18px"><p class="mono" style="margin:0;font-size:11px;letter-spacing:0.12em;color:var(--dim)">03 / CARGO</p><p class="d" style="margin-top:8px;font-size:22px;color:var(--text)">Model Three</p><p class="mono" style="margin:10px 0 0;color:var(--a)">[Rs 000,000]</p></div></a><a class="cc" href="Cine-Contact.dc.html" style="--i:3"><div style="height:62%"><div class="ph" style="aspect-ratio:auto;height:100%;border-radius:0"><svg viewBox="0 0 320 200" fill="none" stroke="var(--a)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="80" cy="140" r="44"></circle><circle cx="240" cy="140" r="44"></circle><circle cx="80" cy="140" r="8"></circle><circle cx="240" cy="140" r="8"></circle><path d="M80 140 L140 72 L210 72 L240 140 M140 72 L160 140 L210 72 M210 72 L226 36 L254 36 M128 56 L160 56"></path><rect x="150" y="82" width="44" height="26" rx="5" fill="var(--a)" fill-opacity="0.18"></rect></svg><span class="tag">Bike 4 · 3:4</span></div></div><div style="padding:18px"><p class="mono" style="margin:0;font-size:11px;letter-spacing:0.12em;color:var(--dim)">04 / COMPACT</p><p class="d" style="margin-top:8px;font-size:22px;color:var(--text)">Model Four</p><p class="mono" style="margin:10px 0 0;color:var(--a)">[Rs 000,000]</p></div></a><a class="cc" href="Cine-Contact.dc.html" style="--i:4"><div style="height:62%"><div class="ph" style="aspect-ratio:auto;height:100%;border-radius:0"><svg viewBox="0 0 320 200" fill="none" stroke="var(--a)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="80" cy="140" r="44"></circle><circle cx="240" cy="140" r="44"></circle><circle cx="80" cy="140" r="8"></circle><circle cx="240" cy="140" r="8"></circle><path d="M80 140 L140 72 L210 72 L240 140 M140 72 L160 140 L210 72 M210 72 L226 36 L254 36 M128 56 L160 56"></path><rect x="150" y="82" width="44" height="26" rx="5" fill="var(--a)" fill-opacity="0.18"></rect></svg><span class="tag">Bike 5 · 3:4</span></div></div><div style="padding:18px"><p class="mono" style="margin:0;font-size:11px;letter-spacing:0.12em;color:var(--dim)">05 / TOURING</p><p class="d" style="margin-top:8px;font-size:22px;color:var(--text)">Model Five</p><p class="mono" style="margin:10px 0 0;color:var(--a)">[Rs 000,000]</p></div></a><a class="cc" href="Cine-Contact.dc.html" style="--i:5"><div style="height:62%"><div class="ph" style="aspect-ratio:auto;height:100%;border-radius:0"><svg viewBox="0 0 320 200" fill="none" stroke="var(--a)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="80" cy="140" r="44"></circle><circle cx="240" cy="140" r="44"></circle><circle cx="80" cy="140" r="8"></circle><circle cx="240" cy="140" r="8"></circle><path d="M80 140 L140 72 L210 72 L240 140 M140 72 L160 140 L210 72 M210 72 L226 36 L254 36 M128 56 L160 56"></path><rect x="150" y="82" width="44" height="26" rx="5" fill="var(--a)" fill-opacity="0.18"></rect></svg><span class="tag">Bike 6 · 3:4</span></div></div><div style="padding:18px"><p class="mono" style="margin:0;font-size:11px;letter-spacing:0.12em;color:var(--dim)">06 / PERFORMANCE</p><p class="d" style="margin-top:8px;font-size:22px;color:var(--text)">Model Six</p><p class="mono" style="margin:10px 0 0;color:var(--a)">[Rs 000,000]</p></div></a></div>
+    </div>
+  </section>
+
+  <div class="mq" aria-hidden="true"><div class="mq-in"><span class="d" style="font-size:40px">City</span><span class="star">✦</span><span class="d outline" style="font-size:40px">Sport</span><span class="star">✦</span><span class="d" style="font-size:40px">Cargo</span><span class="star">✦</span><span class="d outline" style="font-size:40px">Compact</span><span class="star">✦</span><span class="d" style="font-size:40px">Touring</span><span class="star">✦</span><span class="d outline" style="font-size:40px">Performance</span><span class="star">✦</span></div><div class="mq-in"><span class="d" style="font-size:40px">City</span><span class="star">✦</span><span class="d outline" style="font-size:40px">Sport</span><span class="star">✦</span><span class="d" style="font-size:40px">Cargo</span><span class="star">✦</span><span class="d outline" style="font-size:40px">Compact</span><span class="star">✦</span><span class="d" style="font-size:40px">Touring</span><span class="star">✦</span><span class="d outline" style="font-size:40px">Performance</span><span class="star">✦</span></div></div>
+
+  <section aria-labelledby="all" style="padding:140px 0">
+    <div class="wrap">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap" class="sr">
+        <h2 id="all" class="d" style="font-size:clamp(40px,5vw,78px)">Find <span class="acc">yours.</span></h2>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <sc-for list="{{filters}}" as="f" hint-placeholder-count="4"><button type="button" class="{{f.cls}}" aria-pressed="{{f.on}}" onClick="{{f.pick}}">{{f.label}}</button></sc-for>
+        </div>
+      </div>
+      <div class="tgrid" style="margin-top:56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px"><article class="tcard sr" style="padding:0">
+          <div style="position:relative"><div class="ph" style="aspect-ratio:4/3;border-radius:0"><svg viewBox="0 0 320 200" fill="none" stroke="var(--a)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="80" cy="140" r="44"></circle><circle cx="240" cy="140" r="44"></circle><circle cx="80" cy="140" r="8"></circle><circle cx="240" cy="140" r="8"></circle><path d="M80 140 L140 72 L210 72 L240 140 M140 72 L160 140 L210 72 M210 72 L226 36 L254 36 M128 56 L160 56"></path><rect x="150" y="82" width="44" height="26" rx="5" fill="var(--a)" fill-opacity="0.18"></rect></svg><span class="tag">Bike 1</span></div><span class="chip" style="position:absolute;left:16px;top:16px">City</span></div>
+          <div style="position:relative;padding:24px">
+            <h3 class="d" style="font-size:24px">Model One</h3>
+            <div style="margin-top:16px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding-block:14px;border-block:1px solid var(--line)">
+              <div><p class="mono" style="margin:0;font-size:10px;color:var(--dim)">RANGE</p><p class="mono" style="margin:4px 0 0">[000] km</p></div>
+              <div><p class="mono" style="margin:0;font-size:10px;color:var(--dim)">SPEED</p><p class="mono" style="margin:4px 0 0">[00] km/h</p></div>
+              <div><p class="mono" style="margin:0;font-size:10px;color:var(--dim)">MOTOR</p><p class="mono" style="margin:4px 0 0">[0000] W</p></div>
+            </div>
+            <div style="margin-top:18px;display:flex;justify-content:space-between;align-items:center"><span class="mono" style="color:var(--a)">[Rs 000,000]</span><a class="ulink" href="Cine-Contact.dc.html">Book a ride <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></a></div>
+          </div>
+        </article><article class="tcard sr" style="padding:0">
+          <div style="position:relative"><div class="ph" style="aspect-ratio:4/3;border-radius:0"><svg viewBox="0 0 320 200" fill="none" stroke="var(--a)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="80" cy="140" r="44"></circle><circle cx="240" cy="140" r="44"></circle><circle cx="80" cy="140" r="8"></circle><circle cx="240" cy="140" r="8"></circle><path d="M80 140 L140 72 L210 72 L240 140 M140 72 L160 140 L210 72 M210 72 L226 36 L254 36 M128 56 L160 56"></path><rect x="150" y="82" width="44" height="26" rx="5" fill="var(--a)" fill-opacity="0.18"></rect></svg><span class="tag">Bike 2</span></div><span class="chip" style="position:absolute;left:16px;top:16px">Sport</span></div>
+          <div style="position:relative;padding:24px">
+            <h3 class="d" style="font-size:24px">Model Two</h3>
+            <div style="margin-top:16px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding-block:14px;border-block:1px solid var(--line)">
+              <div><p class="mono" style="margin:0;font-size:10px;color:var(--dim)">RANGE</p><p class="mono" style="margin:4px 0 0">[000] km</p></div>
+              <div><p class="mono" style="margin:0;font-size:10px;color:var(--dim)">SPEED</p><p class="mono" style="margin:4px 0 0">[00] km/h</p></div>
+              <div><p class="mono" style="margin:0;font-size:10px;color:var(--dim)">MOTOR</p><p class="mono" style="margin:4px 0 0">[0000] W</p></div>
+            </div>
+            <div style="margin-top:18px;display:flex;justify-content:space-between;align-items:center"><span class="mono" style="color:var(--a)">[Rs 000,000]</span><a class="ulink" href="Cine-Contact.dc.html">Book a ride <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></a></div>
+          </div>
+        </article><article class="tcard sr" style="padding:0">
+          <div style="position:relative"><div class="ph" style="aspect-ratio:4/3;border-radius:0"><svg viewBox="0 0 320 200" fill="none" stroke="var(--a)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="80" cy="140" r="44"></circle><circle cx="240" cy="140" r="44"></circle><circle cx="80" cy="140" r="8"></circle><circle cx="240" cy="140" r="8"></circle><path d="M80 140 L140 72 L210 72 L240 140 M140 72 L160 140 L210 72 M210 72 L226 36 L254 36 M128 56 L160 56"></path><rect x="150" y="82" width="44" height="26" rx="5" fill="var(--a)" fill-opacity="0.18"></rect></svg><span class="tag">Bike 3</span></div><span class="chip" style="position:absolute;left:16px;top:16px">Cargo</span></div>
+          <div style="position:relative;padding:24px">
+            <h3 class="d" style="font-size:24px">Model Three</h3>
+            <div style="margin-top:16px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding-block:14px;border-block:1px solid var(--line)">
+              <div><p class="mono" style="margin:0;font-size:10px;color:var(--dim)">RANGE</p><p class="mono" style="margin:4px 0 0">[000] km</p></div>
+              <div><p class="mono" style="margin:0;font-size:10px;color:var(--dim)">SPEED</p><p class="mono" style="margin:4px 0 0">[00] km/h</p></div>
+              <div><p class="mono" style="margin:0;font-size:10px;color:var(--dim)">MOTOR</p><p class="mono" style="margin:4px 0 0">[0000] W</p></div>
+            </div>
+            <div style="margin-top:18px;display:flex;justify-content:space-between;align-items:center"><span class="mono" style="color:var(--a)">[Rs 000,000]</span><a class="ulink" href="Cine-Contact.dc.html">Book a ride <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></a></div>
+          </div>
+        </article><article class="tcard sr" style="padding:0">
+          <div style="position:relative"><div class="ph" style="aspect-ratio:4/3;border-radius:0"><svg viewBox="0 0 320 200" fill="none" stroke="var(--a)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="80" cy="140" r="44"></circle><circle cx="240" cy="140" r="44"></circle><circle cx="80" cy="140" r="8"></circle><circle cx="240" cy="140" r="8"></circle><path d="M80 140 L140 72 L210 72 L240 140 M140 72 L160 140 L210 72 M210 72 L226 36 L254 36 M128 56 L160 56"></path><rect x="150" y="82" width="44" height="26" rx="5" fill="var(--a)" fill-opacity="0.18"></rect></svg><span class="tag">Bike 4</span></div><span class="chip" style="position:absolute;left:16px;top:16px">Compact</span></div>
+          <div style="position:relative;padding:24px">
+            <h3 class="d" style="font-size:24px">Model Four</h3>
+            <div style="margin-top:16px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding-block:14px;border-block:1px solid var(--line)">
+              <div><p class="mono" style="margin:0;font-size:10px;color:var(--dim)">RANGE</p><p class="mono" style="margin:4px 0 0">[000] km</p></div>
+              <div><p class="mono" style="margin:0;font-size:10px;color:var(--dim)">SPEED</p><p class="mono" style="margin:4px 0 0">[00] km/h</p></div>
+              <div><p class="mono" style="margin:0;font-size:10px;color:var(--dim)">MOTOR</p><p class="mono" style="margin:4px 0 0">[0000] W</p></div>
+            </div>
+            <div style="margin-top:18px;display:flex;justify-content:space-between;align-items:center"><span class="mono" style="color:var(--a)">[Rs 000,000]</span><a class="ulink" href="Cine-Contact.dc.html">Book a ride <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></a></div>
+          </div>
+        </article><article class="tcard sr" style="padding:0">
+          <div style="position:relative"><div class="ph" style="aspect-ratio:4/3;border-radius:0"><svg viewBox="0 0 320 200" fill="none" stroke="var(--a)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="80" cy="140" r="44"></circle><circle cx="240" cy="140" r="44"></circle><circle cx="80" cy="140" r="8"></circle><circle cx="240" cy="140" r="8"></circle><path d="M80 140 L140 72 L210 72 L240 140 M140 72 L160 140 L210 72 M210 72 L226 36 L254 36 M128 56 L160 56"></path><rect x="150" y="82" width="44" height="26" rx="5" fill="var(--a)" fill-opacity="0.18"></rect></svg><span class="tag">Bike 5</span></div><span class="chip" style="position:absolute;left:16px;top:16px">Touring</span></div>
+          <div style="position:relative;padding:24px">
+            <h3 class="d" style="font-size:24px">Model Five</h3>
+            <div style="margin-top:16px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding-block:14px;border-block:1px solid var(--line)">
+              <div><p class="mono" style="margin:0;font-size:10px;color:var(--dim)">RANGE</p><p class="mono" style="margin:4px 0 0">[000] km</p></div>
+              <div><p class="mono" style="margin:0;font-size:10px;color:var(--dim)">SPEED</p><p class="mono" style="margin:4px 0 0">[00] km/h</p></div>
+              <div><p class="mono" style="margin:0;font-size:10px;color:var(--dim)">MOTOR</p><p class="mono" style="margin:4px 0 0">[0000] W</p></div>
+            </div>
+            <div style="margin-top:18px;display:flex;justify-content:space-between;align-items:center"><span class="mono" style="color:var(--a)">[Rs 000,000]</span><a class="ulink" href="Cine-Contact.dc.html">Book a ride <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></a></div>
+          </div>
+        </article><article class="tcard sr" style="padding:0">
+          <div style="position:relative"><div class="ph" style="aspect-ratio:4/3;border-radius:0"><svg viewBox="0 0 320 200" fill="none" stroke="var(--a)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="80" cy="140" r="44"></circle><circle cx="240" cy="140" r="44"></circle><circle cx="80" cy="140" r="8"></circle><circle cx="240" cy="140" r="8"></circle><path d="M80 140 L140 72 L210 72 L240 140 M140 72 L160 140 L210 72 M210 72 L226 36 L254 36 M128 56 L160 56"></path><rect x="150" y="82" width="44" height="26" rx="5" fill="var(--a)" fill-opacity="0.18"></rect></svg><span class="tag">Bike 6</span></div><span class="chip" style="position:absolute;left:16px;top:16px">Performance</span></div>
+          <div style="position:relative;padding:24px">
+            <h3 class="d" style="font-size:24px">Model Six</h3>
+            <div style="margin-top:16px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding-block:14px;border-block:1px solid var(--line)">
+              <div><p class="mono" style="margin:0;font-size:10px;color:var(--dim)">RANGE</p><p class="mono" style="margin:4px 0 0">[000] km</p></div>
+              <div><p class="mono" style="margin:0;font-size:10px;color:var(--dim)">SPEED</p><p class="mono" style="margin:4px 0 0">[00] km/h</p></div>
+              <div><p class="mono" style="margin:0;font-size:10px;color:var(--dim)">MOTOR</p><p class="mono" style="margin:4px 0 0">[0000] W</p></div>
+            </div>
+            <div style="margin-top:18px;display:flex;justify-content:space-between;align-items:center"><span class="mono" style="color:var(--a)">[Rs 000,000]</span><a class="ulink" href="Cine-Contact.dc.html">Book a ride <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></a></div>
+          </div>
+        </article></div>
+    </div>
+  </section>
+  <footer style="position:relative;background:var(--ink2);border-top:1px solid var(--line);overflow:hidden">
+    <div class="wrap" style="padding-top:80px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:48px">
+      <div style="grid-column:span 2;min-width:0">
+        <h2 class="d" style="font-size:44px;line-height:1">Ready when<br><span class="acc">you are.</span></h2>
+        <form style="margin-top:28px;display:flex;gap:8px;max-width:440px;padding:6px;border-radius:999px;border:1px solid var(--line);background:var(--ink)">
+          <label for="news" class="sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Email address</label>
+          <input id="news" type="email" placeholder="Your email address" style="flex:1;min-width:0;background:transparent;border:0;outline:none;color:var(--text);font:inherit;padding:0 16px">
+          <a class="btn" href="Cine-Contact.dc.html" style="min-height:44px;padding:0 20px">Subscribe</a>
+        </form>
+      </div>
+      <div><h2 class="mono" style="margin:0 0 18px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--dim)">Explore</h2><div style="display:flex;flex-direction:column;gap:6px"><a class="ulink" style="min-height:36px;color:var(--muted)" href="Cine-Home.dc.html">Home</a><a class="ulink" style="min-height:36px;color:var(--muted)" href="Cine-Bikes.dc.html">Bikes</a><a class="ulink" style="min-height:36px;color:var(--muted)" href="Cine-Technology.dc.html">Technology</a></div></div>
+      <div><h2 class="mono" style="margin:0 0 18px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--dim)">Company</h2><div style="display:flex;flex-direction:column;gap:6px"><a class="ulink" style="min-height:36px;color:var(--muted)" href="Cine-About.dc.html">About</a><a class="ulink" style="min-height:36px;color:var(--muted)" href="Cine-Contact.dc.html">Contact</a><a class="ulink" style="min-height:36px;color:var(--muted)" href="Cine-References.dc.html">Showcase</a></div></div>
+    </div>
+    <div class="wrap" style="margin-top:64px;padding-top:24px;padding-bottom:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font:500 12px 'Geist Mono',monospace;color:var(--dim);letter-spacing:0.06em">
+      <span>© 2026 {{brand}}. Concept build, placeholder content.</span><span>DESIGNED + BUILT BY [YOUR NAME]</span>
+    </div>
+    <p class="footer-mark" aria-hidden="true">{{brand}}</p>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"brand":{"editor":"text","default":"Voltra","section":"Brand"},"accent":{"editor":"color","default":"#d9f99d","options":["#d9f99d","#67e8f9","#fdba74","#c4b5fd"],"section":"Brand"},"motion":{"editor":"boolean","default":true,"section":"Motion"},"$preview":{"width":1440,"height":3300}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { f: 0 }; }
+  renderVals() {
+    const base = { brand: this.props.brand ?? "Voltra", accent: this.props.accent ?? "#d9f99d", still: (this.props.motion ?? true) ? "" : " still" };
+    const fl = ["All", "City", "Sport", "Long range"];
+    return Object.assign(base, { filters: fl.map((l, i) => ({ label: l, on: this.state.f === i ? "true" : "false", cls: "pchip" + (this.state.f === i ? " on" : ""), pick: () => this.setState({ f: i }) })) });
+  }
+}
+</script>
+</body>
+</html>
