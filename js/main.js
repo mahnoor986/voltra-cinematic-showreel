@@ -101,6 +101,13 @@
       $("[data-sent]", form).hidden = false;
       form.reset(); $$("[data-reply]", form).forEach((c) => c.classList.remove("on"));
     });
+    // Starting a new message clears the previous sent state.
+    form.addEventListener("input", () => {
+      const sent = $("[data-sent]", form);
+      if (sent.hidden) return;
+      sent.hidden = true;
+      $("[data-send-label]", form).textContent = "Send request";
+    });
   }
 
   /* ---------- Footer newsletter (concept) ---------- */

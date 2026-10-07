@@ -262,8 +262,8 @@ html { scroll-behavior: smooth; background: #07080a; }
 /* Sections play their animations when they come into view (class added by main.js only) */
 .await, .await * { animation-play-state: paused !important; }
 
-/* Bikes filter */
-.tcard[hidden] { display: none; }
+/* Keep the hidden attribute working on elements with inline display styles */
+[hidden] { display: none !important; }
 
 /* Contact form errors */
 .fl.err input, .fl.err textarea { border-bottom-color: #ff9c85; }
